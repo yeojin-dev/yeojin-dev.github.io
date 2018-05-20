@@ -1,7 +1,7 @@
-title: Long Haul
-description: Long Form Jekyll theme built with SASS / COMPASS / SUSY
+title: YEOJIN-DEV
+description: YEOJIN-DEV
 
-url: http://brianmaierjr.github.com/long-haul
+url: https://yeojin-dev.github.io/
 baseurl: ""
 paginate_path: "blog/page:num/"
 permalink: blog/:title/
@@ -9,20 +9,22 @@ permalink: blog/:title/
 markdown: kramdown
 highlighter: rouge
 gems: [jekyll-paginate]
-paginate: 5
+paginate: 10
 
 navigation:
  - title: Home
    url: /index.html
  - title: About
    url: /about
- - title: Contact
-   url: /contact
+ - title: Categories
+   url: /category
+#  - title: Contact
+#    url: /contact
 
 social:
-   github: brianmaierjr
-   twitter: brianmaierjr
-   facebook: brianmaierjr
-   email: brimaidesigns@gmail.com
+   github: yeojin-dev
+  #  twitter: brianmaierjr
+  #  facebook: brianmaierjr
+   email: yeojin.dev@gmail.com
 
-google_analytics: "UA-58263416-1"
+# google_analytics: ""
