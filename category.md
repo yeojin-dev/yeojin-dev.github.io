@@ -9,5 +9,6 @@ title: Categories
 		<li><a href="./python">Python</a></li>
 		<li><a href="./algorithm">Algorithm</a></li>
         <li><a href="./opensource">Open Source</a></li>
+				<li><a href="./web">Web</a></li>
 	</ul>
 </div>
