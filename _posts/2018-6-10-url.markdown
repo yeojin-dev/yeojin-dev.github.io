@@ -1,0 +1,46 @@
+---
+layout: post
+title:  "URL"
+date:   2018-6-10
+categories: [web]
+---
+
+<p class="intro"><span class="dropcap">U</span>RL(Uniform Resource Locator)은 통합 자원 지시자로서 웹 서버에 있는 리소스의 개별 이름을 말한다.</p>
+
+## URI? URL?
+
+URL에 대해서 설명하기 전에 먼저 URI에 대해서 알아보아야 할 것 같다. URI(Unifom Resource Identifier)의 약자로 통합 자원 식별자라고 불린다. URL과 거의 차이가 없다. 우리가 흔히들 쓰는 "http://www.aaa.aaa/aaa.gif"같은 종류의 정보(주소)가 바로 URI이다. URI는 URL과 URN(Uniform Resource Name)으로 나뉘는데 URN은 잘 사용되지 않는다. 방금 쓴 aaa.gif 파일의 주소는 URL이다. 거의 대부분의 URL는 URI이며 관례적으로 같은 의미로 사용된다.
+
+![URL](https://qph.ec.quoracdn.net/main-qimg-588b527007fe7c9eba9b1f6eafddc680.webp)
+
+## 웹 서버 리소스가 클라이언트에게 오기까지
+
+많이 나오는 웹 백앤드 주니어 면접 질문 중에 하나가 **"웹브라우저에 웹사이트 주소를 입력하면 구체적으로 어떤 일이 일어나는가?"**라고 한다. 여기서 웹사이트 주소란 URL이라고 볼 수 있다. 그렇다면 URL을 입력받은 웹브라우저는 어떤 일을 하게 될까? 간단하게 요약하면 아래와 같다.
+
+<span style="color:green">**1. 웹브라우저는 서버의 URL에서 호스트 명을 추출한다.**</span>
+
+여기서 호스트 이름은 www.aaa.aaa와 같은 웹사이트 주소를 말한다.
+
+<span style="color:green">**2. 웹브라우저는 서버의 호스트 명을 IP로 변환한다.**</span>
+
+www.aaa.aaa는 HTTP의 호스트 명이지만 IP에서 사용하는 주소는 아니다. IP는 "111.111.111.111"과 같이 숫자로 이루어져 있으며 HTTP보다 더 낮은 레벨(네트워크 계층)에서 사용하는 프로토콜이다. HTTP 호스트 명을 IP 주소로 바꿔주는 역할은 DNS가 한다.
+
+<span style="color:green">**3. 웹브라우저는 URL에서 포트번호(있다면)를 추출한다.**</span>
+
+포트번호는 웹 서버에 오는 요청이 어떤 요청인지 구별하게 위해서 사용한다. 웹 서비스의 경우 기본 값은 80이다.
+
+<span style="color:green">**4. 웹브라우저는 웹 서버와 TCP 커넥션을 맺는다.**</span>
+
+OSI 4단계 계층(트랜스퍼 계층)의 프로토콜인 TCP를 이용해서 커넥션을 맺는다. TCP는 HTTP와 달리 바이너리로 통신하기 때문에 빠르지만 복잡하다. TCP를 통해 바이너리로 HTTP 요청을 처리하지만 HTTP는 텍스트 기반으로 통신을 한다.
+
+<span style="color:green">**5. 웹브라우저는 HTTP 요청을 보낸다.**</span>
+
+웹 서버는 TCP/IP 커넥션을 기반으로 하지만 서버와 클라이언트 PC는 HTTP 통신을 한다.
+
+<span style="color:green">**6. 서버는 웹브라우저에 HTTP 응답을 돌려준다.**</span>
+
+우리가 자주 보는 404 에러 페이지 등의 응답을 보내주는 단계가 이 단계이다.
+
+<span style="color:green">**7. 커넥션이 닫히면, 웹브라우저는 문서를 보여준다.**</span>
+
+커넥션이 닫히고 난 후에 웹브라우저는 HTML 기반의 문서를 렌더링해서 보여준다. 렌더링 엔진으로 우리가 잘 아는 Webkit, Gecko 등이 있다.
