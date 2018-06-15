@@ -1,0 +1,247 @@
+---
+layout: post
+title:  "SQL 기본 (1)"
+date:   2018-6-15
+categories: [sql]
+---
+
+<p class="intro"><span class="dropcap">S</span>QL(Structured Query Language)은 데이터베이스를 관리하기 위한 언어이다.</p>
+
+## Query
+
+파이썬에서 사용하는 딕셔너리, 튜플과 데이터베이스를 비교했을 때 가장 중요한 차이점은 **데이터베이스는 질의어(Query)로 데이터를 검색**한다는 점이다. 지금까지 파이썬의 변수들은 변수들이 가지고 있는 메모리 주소(id() 메소드로 확인할 수 있는)를 통해 데이터에 접근했지만 데이터베이스는 질의어(string이 될 수도 있는)를 통해 데이터에 접근한다. 그 외에 데이터베이스는 데이터를 변수에 할당된 메모리만큼 로드하는 것이 아니라 레코드 단위로 로드한다는 점도 다르다. 데이터베이스에서 보는 데이터 단위와 파이썬에서 보는 데이터의 단위가 서로 다르다는 점을 꼭 기억해야 할 것이다.
+
+## 주요 SQL 명령어
+
+- `SELECT` 데이터베이스에서 데이터를 추출
+- `UPDATE` 데이터베이스의 데이터를 업데이트
+- `DELETE` 데이터베이스에서 데이터를 삭제
+- `INSERT INTO` 새로운 데이터를 데이터베이스에 삽입
+- `CREATE DATABASE` 새로운 데이터베이스를 생성
+- `ALTER TABLE` 데이터베이스를 수정
+- `CREATE TABLE` 새로운 테이블을 생성
+- `ALTER TABLE` 테이블을 수정
+- `DROP TABLE` 테이블을 삭제
+- `CREATE INDEX` 색인 (검색 키) 생성
+- `DROP INDEX` 색인 삭제
+
+가장 중요한 SQL의 명령어를 살펴보자.
+
+## SELECT
+특정 항목을 조회할 때 사용한다.
+```sql
+SELECT column1, column2, ...
+FROM table_name;
+```
+항목 전체를 보고 싶을 때는 * 기호를 사용하면 된다.
+```sql
+SELECT * FROM table_name;
+```
+#### SELECT DISTINCT
+중복된 레코드를 하나만 표시한다.
+```sql
+SELECT DISTINCT column1, column2, ...
+FROM table_name;
+```
+특정 column1의 개수를 알고 싶을 때는 COUNT() 함수를 사용한다.
+```sql
+SELECT COUNT(DISTINCT column1) FROM table_name;
+```
+특정 column1의 개수를 알고 그 column1 명을 재지정할 때 AS를 사용한다.
+```sql
+SELECT COUNT(*) AS column1_name FROM (SELECT DISTINCT column1 FROM table_name);
+```
+
+## WHERE
+특정 column1에서 특정 조건에 부합하는 항목을 찾을 경우에 사용한다.
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+WHERE의 연산자는 파이썬과 꽤 유사하다.
+
+#### WHERE절 연산자
+- = : Equal
+- <> : Not equal. (!=)
+- \> : Greater than
+- < : Less than
+- \>= : Greater than or equal
+- <= : Less than or equal
+- BETWEEN : Between an inclusive range
+- LIKE : Search for a pattern
+- IN : To specify multiple possible values for a column
+
+#### AND & OR & NOT
+AND 구문
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition1 AND condition2 AND condition3 ...;
+```
+OR 구문
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition1 OR condition2 OR condition3 ...;
+```
+NOT 구문
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE NOT condition;
+```
+
+#### BY ORDER
+컬럼1, 컬럼2를 기준으로 정렬된 table_name에서 컬럼1, 컬럼2를 선택한다.
+```sql
+SELECT column1, column2, ...
+FROM table_name
+ORDER BY column1, column2, ... ASC|DESC;
+```
+* ASC : 오름차순
+* DESC : 내림차순
+
+## INSERT INTO
+테이블에 새로운 정보를 넣을 때 사용된다.
+```sql
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+```
+열 이름과 값을 모두 삽입하는 방법
+```sql
+INSERT INTO table_name
+VALUES (value1, value2, value3, ...);
+```
+값의 순서가 테이블의 컬럼과 같을 경우 삽입하는 방법
+
+#### NULL
+테이블 필드가 선택 사항일 경우, 이 필드에 값을 추가하지 않고 업데이트하게 될 경우 NULL 값으로 저장된다.
+* NULL 값 유무 확인
+```sql
+SELECT column_names
+FROM table_name
+WHERE column_name IS NULL;
+```
+* NULL 값이 아닌 것 확인
+```sql
+SELECT column_names
+FROM table_name
+WHERE column_name IS NOT NULL;
+```
+
+## UPDATE
+테이블의 기록을 업데이트할 때 WHERE절을 넣는 것을 주의하여야한다.
+
+WHERE절은 업데이트 해야하는 기록들을 지정한다.
+
+```sql
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+```
+
+## DELETE
+테이블에 대한 기존 기록 삭제
+```sql
+DELETE FROM table_name
+WHERE condition;
+```
+
+#### SELECT TOP
+SELECT TOP : 반환할 기록의 수를 지정하는 데 사용된다. <br>
+* ORACLE : ROWNUM 지원 <br>
+* MySQL : LIMIT 지원 <br>
+<br>
+SQL은 표준 문법이 존재하지만(ANSI SQL) 각 DB마다 고유의 문법이 존재한다. 완전히 다른 문법은 아니지만 조금씩 다르기 때문에 사용하고자 하는 DB에 따라 잘 사용해야 한다.
+
+1. SQL 서버 / MS 엑세스 구문
+```sql
+SELECT TOP number|percent column_name(s)
+FROM table_name
+WHERE condition;
+```
+2. MySQL 구문
+```sql
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+LIMIT number;
+```
+3. ORACLE 구문
+```sql
+SELECT column_name(s)
+FROM table_name
+WHERE ROWNUM <= number;
+```
+
+#### MIN(), MAX() 함수
+
+* MIN()
+```sql
+SELECT MIN(column_name)
+FROM table_name
+WHERE condition;
+```
+* MAX()
+```sql
+SELECT MAX(column_name)
+FROM table_name
+WHERE condition;
+```
+
+#### COUNT(), AVG(), SUM() 함수
+
+* COUNT()
+```sql
+SELECT COUNT(column_name)
+FROM table_name
+WHERE condition;
+```
+* AVG()
+```sql
+SELECT AVG(column_name)
+FROM table_name
+WHERE condition;
+```
+* SUM()
+```sql
+SELECT SUM(column_name)
+FROM table_name
+WHERE condition;
+```
+
+#### LIKE 연산자
+열의 특정 패턴을 검색하는 WHERE절에서 사용된다.
+LIKE 연산자는 두 와일드 카드와 함께 사용된다.
+  - % : 0이나 1 또는 여러 문자를 나타낸다.
+  - _ : 하나의 문자를 나타낸다.
+
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE columnN LIKE pattern;
+```
+
+#### IN 연산자
+```sql
+SELECT column_name(s)
+FROM table_name
+WHERE column_name IN (value1, value2, ...)|(SELECT STATEMENT);
+```
+
+#### BETWEEN 연산자
+```sql
+SELECT column_name(s)
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+```
+
+#### ALIASES
+테이블, 테이블의 열 등 임시 이름을 부여하는 데 사용된다. <br>
+이는 열의 이름을 더 쉽게 읽을 수 있도록 하는데 쓰인다.
+```sql
+SELECT column_name AS alias_name
+FROM table_name;
+```
