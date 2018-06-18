@@ -7,6 +7,7 @@ title: Categories
 	<h1 class="pageTitle">Categories</h1>
 	<ul>
 		<li><a href="./python">Python</a></li>
+		<li><a href="./django">Django</a></li>
 		<li><a href="./algorithm">Algorithm</a></li>
         <li><a href="./opensource">Open Source</a></li>
 				<li><a href="./web">Web</a></li>
