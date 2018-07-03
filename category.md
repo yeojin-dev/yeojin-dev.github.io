@@ -11,6 +11,7 @@ title: Categories
 		<li><a href="./algorithm">Algorithm</a></li>
         <li><a href="./opensource">Open Source</a></li>
 				<li><a href="./web">Web</a></li>
+				<li><a href="./aws">AWS</a></li>
 				<li><a href="./sql">SQL</a></li>
 	</ul>
 </div>
