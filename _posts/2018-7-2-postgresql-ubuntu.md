@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Ubuntu 환경에서 PostgresSQL 설치 후 리모트 접속하기"
+title:  "Ubuntu 환경에서 PostgreSQL 설치 후 리모트 접속하기"
 date:   2018-7-2
 categories: [django]
 ---
@@ -57,7 +57,7 @@ postgres라는 이름의 계정은 PostgreSQL의 슈퍼유저이기 때문에 Po
 ```
 postgres=# \du
                              List of roles
- Role name |                   Attributes                   | Member of 
+ Role name |                   Attributes                   | Member of
 -----------+------------------------------------------------+-----------
  postgres  | Superuser, Create role, Create DB, Replication | {}
 ```
@@ -84,7 +84,7 @@ postgres=# CREATE ROLE hellopsql LOGIN CREATEDB PASSWORD 'hello';
 CREATE ROLE
 postgres=# \du
                              List of roles
- Role name |                   Attributes                   | Member of 
+ Role name |                   Attributes                   | Member of
 -----------+------------------------------------------------+-----------
  hellopsql | Create DB                                      | {}
  postgres  | Superuser, Create role, Create DB, Replication | {}
@@ -106,8 +106,8 @@ postgres=# \l
                               List of databases
    Name    |   Owner   | Encoding  | Collate | Ctype |   Access privileges   
 -----------+-----------+-----------+---------+-------+-----------------------
- hellopsql | hellopsql | SQL_ASCII | C       | C     | 
- postgres  | postgres  | SQL_ASCII | C       | C     | 
+ hellopsql | hellopsql | SQL_ASCII | C       | C     |
+ postgres  | postgres  | SQL_ASCII | C       | C     |
  template0 | postgres  | SQL_ASCII | C       | C     | =c/postgres          +
            |           |           |         |       | postgres=CTc/postgres
  template1 | postgres  | SQL_ASCII | C       | C     | =c/postgres          +
