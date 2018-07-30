@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<div class="post">
+  <h1 class="pageTitle">TIL</h1>
+  <ul>
+    {% for post in site.categories.til %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

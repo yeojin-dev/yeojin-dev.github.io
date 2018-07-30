@@ -13,5 +13,6 @@ title: Categories
 				<li><a href="./web">Web</a></li>
 				<li><a href="./aws">AWS</a></li>
 				<li><a href="./sql">SQL</a></li>
+				<li><a href="./til">TIL</a></li>
 	</ul>
 </div>
