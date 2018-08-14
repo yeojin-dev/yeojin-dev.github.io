@@ -22,10 +22,10 @@ ASCII 코드를 보면 각 문자마다 대응하는 십진수가 있는데 '0'�
 ## Implementation
 
 ```python
-result = 0
-
 def str_to_int(num):
+    result = 0
     for digit in num:
         result *= 10
-        resutl += ord(digit) - ord('0')
+        result += ord(digit) - ord('0')
+    return result
 ```
